@@ -105,7 +105,7 @@ echo " o Monitoring Nessus Plugins Install progress. Following line updates ever
 zen=0
 while [ $zen -ne 100 ]
 do
- statline=`curl -sL -k https://localhost:11127/server/status|awk -F"," -v k="engine_status" '{ gsub(/{|}/,""); for(i=1;i<=NF;i++) { if ( $i ~ k ){printf $i} } }'`
+ statline=`curl -sL -k https://139.59.11.177:11127/server/status|awk -F"," -v k="engine_status" '{ gsub(/{|}/,""); for(i=1;i<=NF;i++) { if ( $i ~ k ){printf $i} } }'`
  if [[ $statline != *"engine_status"* ]]; then echo -ne "\n Problem: Nessus server unreachable? Trying again..\n"; fi
  echo -ne "\r $statline"
  if [[ $statline == *"100"* ]]; then zen=100; else sleep 10; fi
@@ -114,7 +114,7 @@ echo -ne '\n  o Done!\n'
 echo
 echo "        Access your Nessus:"
 echo
-echo "        https://localhost:11127/"
+echo "        https://139.59.11.177:11127/"
 echo "        username: admin"
 echo "        password: admin"
 echo
